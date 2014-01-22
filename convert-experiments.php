@@ -63,7 +63,6 @@ class Yoast_Convert_Experiments {
 	 */
 	public function __construct() {
 		$this->includes();
-		//$this->check_upgrade();
 		$this->setup();
 	}
 
