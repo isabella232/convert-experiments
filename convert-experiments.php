@@ -50,19 +50,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * @todo
  * - Add plugin textdomain to all strings and create pot file
  * - Create upgrade script that loads the old option, saves it as new option, deletes old option
+ * - Add check regexp to project number, the project number should contain a _
  */
 class Yoast_Convert_Experiments {
 
-	const PLUGIN_FILE           = __FILE__;
-	const PLUGIN_VERSION_NAME   = '1.0.0';
-	const PLUGIN_VERSION_CODE   = '1';
-	const OPTION_PROJECT_NUMBER = 'convert_experiments_project_number';
+	const PLUGIN_FILE         = __FILE__;
+	const PLUGIN_VERSION_CODE = '1';
+	const PLUGIN_OPTIONS      = 'convert_experiments';
 
 	/**
 	 * Constructor
 	 */
 	public function __construct() {
 		$this->includes();
+		//$this->check_upgrade();
 		$this->setup();
 	}
 
@@ -73,6 +74,7 @@ class Yoast_Convert_Experiments {
 		if ( is_admin() ) {
 			require_once dirname( __FILE__ ) . '/classes/admin/class-admin.php';
 			require_once dirname( __FILE__ ) . '/classes/admin/class-admin-page.php';
+			require_once dirname( __FILE__ ) . '/classes/admin/class-upgrade-manager.php';
 		} else {
 			require_once dirname( __FILE__ ) . '/classes/frontend/class-convert-script.php';
 		}
@@ -83,10 +85,26 @@ class Yoast_Convert_Experiments {
 	 */
 	private function setup() {
 		if ( is_admin() ) {
+
+			// Plugin updater
+			$plugin_updater = new YCE_Upgrade_Manager();
+			$plugin_updater->check_update();
+
+			// Setup Admin
 			new YCE_Admin();
+
 		} else {
 			new YCE_Convert_Script();
 		}
+	}
+
+	/**
+	 * Get the plugin options
+	 *
+	 * @return array
+	 */
+	public static function get_options() {
+		return apply_filters( 'convert_experiments_options', wp_parse_args( get_option( self::PLUGIN_OPTIONS, array() ), array( 'project_number' => '', 'version_code' => 0 ) ) );
 	}
 
 	/**
@@ -95,7 +113,21 @@ class Yoast_Convert_Experiments {
 	 * @return string
 	 */
 	public static function get_project_number() {
-		return apply_filters( 'convert_experiments_project_number', trim( get_option( self::OPTION_PROJECT_NUMBER, '' ) ) );
+		$options = self::get_options();
+
+		return apply_filters( 'convert_experiments_project_number', $options['project_number'] );
+	}
+
+	/**
+	 * Save an option
+	 *
+	 * @param string $key
+	 * @param string $value
+	 */
+	public static function save_option( $key, $value ) {
+		$options       = self::get_options();
+		$options[$key] = $value;
+		update_option( self::PLUGIN_OPTIONS, $options );
 	}
 
 }
