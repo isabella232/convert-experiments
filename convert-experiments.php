@@ -35,7 +35,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @todo
  * - Add plugin textdomain to all strings and create pot file
- * - Create upgrade script that loads the old option, saves it as new option, deletes old option
  * - Add check regexp to project number, the project number should contain a _
  */
 class Yoast_Convert_Experiments {
