@@ -1,7 +1,15 @@
 <?php
 
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 class YCE_Admin_Page {
 
+	/**
+	 * @var array
+	 */
 	private $options;
 
 	/**
@@ -149,7 +157,7 @@ class YCE_Admin_Page {
 	<?php
 		*/
 
-		$this->options = get_option( 'convert_experiments' );
+		$this->options = Yoast_Convert_Experiments::get_options();
 		?>
 		<div class="wrap">
 			<h2><?php echo __( 'Convert Experiments by Yoast', 'convert-experiments' ) . ' - ' . __( 'Configuration', 'convert-experiments' ); ?></h2>
