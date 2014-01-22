@@ -35,7 +35,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @todo
  * - Add plugin textdomain to all strings and create pot file
- * - Add check regexp to project number, the project number should contain a _
+ * - Add check regexp to project number, the project number should contain a _ ( preg_match( '/^[0-9]+\_[0-9]+$/', $key ))
  */
 class Yoast_Convert_Experiments {
 
