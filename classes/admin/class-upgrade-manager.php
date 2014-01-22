@@ -40,8 +40,6 @@ class YCE_Upgrade_Manager {
 
 		if ( $current_version < 1 ) {
 
-			echo 'Upgrading to 2.0.0';
-
 			/**
 			 * Upgrade to version 2.0.0
 			 *
