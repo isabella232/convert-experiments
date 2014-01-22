@@ -34,7 +34,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * Class Yoast_Convert_Experiments
  *
  * @todo
- * - Add plugin textdomain to all strings and create pot file
  * - Add check regexp to project number, the project number should contain a _ ( preg_match( '/^[0-9]+\_[0-9]+$/', $key ))
  */
 class Yoast_Convert_Experiments {
@@ -69,6 +68,9 @@ class Yoast_Convert_Experiments {
 	 */
 	private function setup() {
 		if ( is_admin() ) {
+
+			// Load textdomain
+			load_plugin_textdomain( 'convert-experiments', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 
 			// Plugin updater
 			$plugin_updater = new YCE_Upgrade_Manager();
