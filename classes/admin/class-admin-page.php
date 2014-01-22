@@ -70,14 +70,23 @@ class YCE_Admin_Page {
 		return $input;
 	}
 
+	public function show_error() {
+		echo "<div class='error'><p><strong>" . __( 'Convert Experiments is almost ready.', 'convert-experiments' ) . "</strong> " . sprintf( __( 'Incorrect project number.', 'convert-experiments' ), "options-general.php?page=yoast-convert-experiments" ) . "</p></div>";
+	}
+
 	/**
 	 * Print the project number field
 	 */
 	public function project_number_callback() {
+
 		printf(
 				'<input type="text" id="project_number" name="convert_experiments[project_number]" value="%s" />',
 				isset( $this->options['project_number'] ) ? esc_attr( $this->options['project_number'] ) : ''
 		);
+
+		if ( '' != $this->options['project_number'] && ! preg_match( '/^[0-9]+\_[0-9]+$/', $this->options['project_number'] ) ) {
+			echo "<p class='yce-error'>" . __( 'Incorrect project number', 'convert-experiments' ) . "</p>\n";
+		}
 	}
 
 	/**

@@ -4,3 +4,8 @@
 	float: left;
 	-moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
 }
+
+.yce-error {
+	font-weight: bold;
+	color: #ff0000;
+}

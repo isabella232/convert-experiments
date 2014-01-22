@@ -30,12 +30,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-/**
- * Class Yoast_Convert_Experiments
- *
- * @todo
- * - Add check regexp to project number, the project number should contain a _ ( preg_match( '/^[0-9]+\_[0-9]+$/', $key ))
- */
 class Yoast_Convert_Experiments {
 
 	const PLUGIN_FILE         = __FILE__;
