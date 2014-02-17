@@ -16,9 +16,9 @@ A/B testing for Wordpress now possible and simple. This plugin will enable your 
 
 The plugin will automatically send the page type, page name, category name, category ID, and tags to Convert Experiments. A/B testing on any set of categories or pages is then easy with the advanced filtering and segmentation during test configuration.
 
-You'll need a [Convert Experiments](http://convert.com/) account to use it. But then A/B tests are easy to setup without any technical knowledge. Split testing and multivariate testing is available within Convert Experiments and this plugin as well. So besides A/B testing any other conversion rate optimization testing is easy and fast.
+You'll need a [Convert Experiments](http://convert.com/yoast/) account to use it. But then A/B tests are easy to setup without any technical knowledge. Split testing and multivariate testing is available within Convert Experiments and this plugin as well. So besides A/B testing any other conversion rate optimization testing is easy and fast.
 
-Convert Experiments A/B testing tool works with Google Analytics (GA), Google Analytics (GA) custom variables, Google Analytics Ecommerce Revenue Tracking, KissMetrics and helps optimize your PPC and SEO efforts. Great plugin to have and combine with SEO pack, SEO by Yoast, SEO Ultimate or Google Analytics for Wordpress.
+Convert Experiments A/B testing tool works with Google Analytics (GA), Google Analytics (GA) custom variables, Google Analytics Ecommerce Revenue Tracking, KissMetrics and helps optimize your PPC and SEO efforts. Great plugin to have and combine with SEO pack, SEO by Yoast, SEO Ultimate or Google Analytics for WordPress.
 
 == Installation ==
 

@@ -3,7 +3,7 @@
 Plugin Name: Convert Experiments by Yoast
 Version: 2.0.0
 Plugin URI: http://convert.com/
-Description: Convert Experiments provides A/B and Multivariate Testing for Experts. To get started: 1) Click the "Activate" link to the left of this description, 2) <a href="https://www.convertexperiments.com/login?action=register">Sign up for a free trial</a>, and 3) Go to your <a href="options-general.php?page=yoast-convert-experiments">Convert Experiments configuration</a> page, and enter your project number.
+Description: Convert Experiments by Yoast provides A/B and Multivariate Testing for Experts. To get started: 1) Click the "Activate" link to the left of this description, 2) <a href="http://www.convert.com/yoast/">Sign up for a free trial</a>, and 3) Go to your <a href="options-general.php?page=convert-experiments-by-yoast">Convert Experiments by Yoast configuration page</a>, and enter your project number.
 Author: Yoast
 Author URI: http://www.yoast.com/
 Text Domain: convert-experiments
