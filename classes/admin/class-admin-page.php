@@ -37,18 +37,18 @@ class YCE_Admin_Page {
 		register_setting( 'convert-experiments', 'convert_experiments', array( $this, 'sanitize' ) );
 
 		add_settings_section(
-				'section_convert_experiments', // ID
-				'Convert Experiments', // Title
-				array( $this, 'print_section_info' ), // Callback
-				'convert-experiments-by-yoast' // Page
+			'section_convert_experiments', // ID
+			'Convert Experiments', // Title
+			array( $this, 'print_section_info' ), // Callback
+			'convert-experiments-by-yoast' // Page
 		);
 
 		add_settings_field(
-				'project_number', // ID
-				'Project Number', // Title
-				array( $this, 'project_number_callback' ), // Callback
-				'convert-experiments-by-yoast', // Page
-				'section_convert_experiments' // Section
+			'project_number', // ID
+			'Project Number', // Title
+			array( $this, 'project_number_callback' ), // Callback
+			'convert-experiments-by-yoast', // Page
+			'section_convert_experiments' // Section
 		);
 	}
 
@@ -80,8 +80,8 @@ class YCE_Admin_Page {
 	public function project_number_callback() {
 
 		printf(
-				'<input type="text" id="project_number" name="convert_experiments[project_number]" value="%s" />',
-				isset( $this->options['project_number'] ) ? esc_attr( $this->options['project_number'] ) : ''
+			'<input type="text" id="project_number" name="convert_experiments[project_number]" value="%s" />',
+			isset( $this->options['project_number'] ) ? esc_attr( $this->options['project_number'] ) : ''
 		);
 
 		if ( '' != $this->options['project_number'] && ! preg_match( '/^[0-9]+\_[0-9]+$/', $this->options['project_number'] ) ) {
@@ -112,8 +112,17 @@ class YCE_Admin_Page {
 			<div class="convert-experiments-page-right">
 				<a name="product-number"></a>
 				Your Product Number is located on the Edit page for your project:<br /><br />
-				<img src="<?php echo plugins_url() ?>/convert-experiments/assets/images/product-number.png" style="border: 2px solid black" />
+				<img src="<?php echo plugins_dir_url( Yoast_Convert_Experiments::PLUGIN_FILE ) ?>assets/images/product-number.png"/>
 			</div>
+
+			<div class="clear"></div>
+
+			<div class="alignleft">
+				<a href="https://yoast.com/hire-us/conversion-review/?utm_source=yoast-convert-config&utm_medium=banner&utm_campaign=conversion-review-banner">
+					<img src="<?php echo plugins_dir_url( Yoast_Convert_Experiments::PLUGIN_FILE ) ?>assets/images/conversion-review.png" alt="Conversion Review" />
+				</a>
+			</div>
+
 		</div>
 	<?php
 	}
