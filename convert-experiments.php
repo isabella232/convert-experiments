@@ -3,7 +3,7 @@
 Plugin Name: Convert Experiments by Yoast
 Version: 2.0.0
 Plugin URI: http://convert.com/
-Description: Convert Experiments by Yoast provides A/B and Multivariate Testing for Experts. To get started: 1) Click the "Activate" link to the left of this description, 2) <a href="http://www.convert.com/yoast/">Sign up for a free trial</a>, and 3) Go to your <a href="options-general.php?page=convert-experiments-by-yoast">Convert Experiments by Yoast configuration page</a>, and enter your project number.
+Description: Convert Experiments by Yoast provides A/B and Multivariate Testing for Experts. To get started: 1) Click the "Activate" link to the left of this description, 2) <a href="http://www.convert.com/yoast/">Sign up for a free trial</a>, and 3) Go to your <a href="options-general.php?page=convert-experiments-by-yoast">Convert Experiments by Yoast configuration page</a>, and enter your project ID.
 Author: Yoast
 Author URI: http://www.yoast.com/
 Text Domain: convert-experiments
@@ -84,18 +84,21 @@ class Yoast_Convert_Experiments {
 	 * @return array
 	 */
 	public static function get_options() {
-		return apply_filters( 'convert_experiments_options', wp_parse_args( get_option( self::PLUGIN_OPTIONS, array() ), array( 'project_number' => '', 'version_code' => 0 ) ) );
+		return apply_filters( 'convert_experiments_options', wp_parse_args( get_option( self::PLUGIN_OPTIONS, array() ), array( 'project_id' => '', 'version_code' => 0 ) ) );
 	}
 
 	/**
-	 * Get the project number
+	 * Get the project ID
 	 *
 	 * @return string
 	 */
-	public static function get_project_number() {
+	public static function get_project_ID() {
 		$options = self::get_options();
 
-		return apply_filters( 'convert_experiments_project_number', $options['project_number'] );
+		/**
+		 * @api unsigned The project ID, to filter.
+		 */
+		return apply_filters( 'convert_experiments_project_id', $options['project_id'] );
 	}
 
 	/**

@@ -28,7 +28,7 @@ class YCE_Admin {
 	 * Show the warning if the option isa  different an empty string
 	 */
 	public function check_option_set() {
-		if ( '' === Yoast_Convert_Experiments::get_project_number() ) {
+		if ( '' === Yoast_Convert_Experiments::get_project_ID() ) {
 			add_action( 'admin_notices', array( $this, 'show_warning' ) );
 		}
 	}

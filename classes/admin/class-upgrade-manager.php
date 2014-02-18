@@ -53,7 +53,7 @@ class YCE_Upgrade_Manager {
 			if ( '' != $old_project_number ) {
 
 				// Save the old project number in the new project number option
-				Yoast_Convert_Experiments::save_option( 'project_number', $old_project_number );
+				Yoast_Convert_Experiments::save_option( 'project_id', $old_project_number );
 			}
 
 			// Remove the old option

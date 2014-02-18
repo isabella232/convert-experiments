@@ -11,7 +11,8 @@ class YCE_Convert_Script {
 	 * Hook script method to wp_head
 	 */
 	public function __construct() {
-		add_action( 'wp_head', array( $this, 'script' ), 10 );
+		// Index 1 because script needs to load before _everything_.
+		add_action( 'wp_head', array( $this, 'script' ), 1 );
 	}
 
 	/**
@@ -20,7 +21,7 @@ class YCE_Convert_Script {
 	public function script() {
 
 		// Check if user entered a project number
-		if ( '' != Yoast_Convert_Experiments::get_project_number() ) {
+		if ( '' != Yoast_Convert_Experiments::get_project_ID() ) {
 
 			// Setup extra var string
 			$extra_vars = '';
@@ -65,7 +66,7 @@ class YCE_Convert_Script {
 			}
 
 			// Get project number parts
-			$parts = explode( "_", Yoast_Convert_Experiments::get_project_number() );
+			$parts = explode( "_", Yoast_Convert_Experiments::get_project_ID() );
 
 			// Start script part
 			echo "<!-- Begin Convert Experiments code-->\n";

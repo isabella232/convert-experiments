@@ -44,9 +44,9 @@ class YCE_Admin_Page {
 		);
 
 		add_settings_field(
-			'project_number', // ID
-			__( 'Project Number', 'convert-experiments' ), // Title
-			array( $this, 'project_number_callback' ), // Callback
+			'project_id', // ID
+			__( 'Project ID', 'convert-experiments' ), // Title
+			array( $this, 'project_ID_callback' ), // Callback
 			'convert-experiments-by-yoast', // Page
 			'section_convert_experiments' // Section
 		);
@@ -56,7 +56,7 @@ class YCE_Admin_Page {
 	 * Print section info
 	 */
 	public function print_section_info() {
-		echo __( 'Enter your project number below.', 'convert-experiments' );
+		echo __( 'Enter your project ID below.', 'convert-experiments' );
 	}
 
 	/**
@@ -71,21 +71,21 @@ class YCE_Admin_Page {
 	}
 
 	public function show_error() {
-		echo "<div class='error'><p><strong>" . __( 'Convert Experiments is almost ready.', 'convert-experiments' ) . "</strong> " . sprintf( __( 'Incorrect project number.', 'convert-experiments' ), "options-general.php?page=convert-experiments-by-yoast" ) . "</p></div>";
+		echo "<div class='error'><p><strong>" . __( 'Convert Experiments is almost ready.', 'convert-experiments' ) . "</strong> " . sprintf( __( 'Incorrect project ID.', 'convert-experiments' ), "options-general.php?page=convert-experiments-by-yoast" ) . "</p></div>";
 	}
 
 	/**
-	 * Print the project number field
+	 * Print the project ID field
 	 */
-	public function project_number_callback() {
+	public function project_ID_callback() {
 
 		printf(
-			'<input type="text" id="project_number" name="convert_experiments[project_number]" value="%s" />',
-			isset( $this->options['project_number'] ) ? esc_attr( $this->options['project_number'] ) : ''
+			'<input type="text" id="project_id" name="convert_experiments[project_id]" value="%s" />',
+			isset( $this->options['project_id'] ) ? esc_attr( $this->options['project_id'] ) : ''
 		);
 
-		if ( '' != $this->options['project_number'] && ! preg_match( '/^[0-9]+\_[0-9]+$/', $this->options['project_number'] ) ) {
-			echo "<p class='yce-error'>" . __( 'Incorrect project number', 'convert-experiments' ) . "</p>\n";
+		if ( '' != $this->options['project_id'] && ! preg_match( '/^[0-9]+\_[0-9]+$/', $this->options['project_id'] ) ) {
+			echo "<p class='yce-error'>" . __( 'Incorrect project ID', 'convert-experiments' ) . "</p>\n";
 		}
 	}
 
@@ -99,7 +99,7 @@ class YCE_Admin_Page {
 			<h2><?php echo __( 'Convert Experiments by Yoast', 'convert-experiments' ) . ' - ' . __( 'Configuration', 'convert-experiments' ); ?></h2>
 
 			<div class="convert-experiments-page-left">
-				<form method="post" action="options.php">
+				<form method="post" action="<?php echo admin_url( 'options.php' ); ?>">
 					<?php
 					// This prints out all hidden setting fields
 					settings_fields( 'convert-experiments' );
@@ -108,7 +108,7 @@ class YCE_Admin_Page {
 					?>
 				</form>
 
-				<?php if ( ! isset( $this->options['project_number'] ) || '' == $this->options['project_number'] ) { ?>
+				<?php if ( ! isset( $this->options['project_id'] ) || '' == $this->options['project_id'] ) { ?>
 
 					<h3><?php _e( 'Don\'t have a Convert account yet?', 'convert-experiments' ); ?></h3>
 
@@ -124,7 +124,7 @@ class YCE_Admin_Page {
 				<?php
 				} else {
 
-					preg_match( '/\d+_(\d+)/', $this->options['project_number'], $match );
+					preg_match( '/\d+_(\d+)/', $this->options['project_id'], $match );
 					if ( is_array( $match ) ) {
 						$project_id = $match[1];
 
@@ -144,9 +144,9 @@ class YCE_Admin_Page {
 			</div>
 
 			<div class="convert-experiments-page-right">
-				<a name="product-number"></a>
-				<?php _e( 'Your Product Number is located on the Edit page for your project:', 'convert-experiments' ); ?><br /><br />
-				<img src="<?php echo plugin_dir_url( Yoast_Convert_Experiments::PLUGIN_FILE ) ?>assets/images/product-number.png" />
+				<a name="project-id"></a>
+				<?php _e( 'Your Product ID is located on the Edit page for your project:', 'convert-experiments' ); ?><br /><br />
+				<img src="<?php echo plugin_dir_url( Yoast_Convert_Experiments::PLUGIN_FILE ) ?>assets/images/convert-project-id.png" alt="<?php _e( 'Project ID location', 'convert-experiments' ); ?>" />
 			</div>
 
 		</div>
