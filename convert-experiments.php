@@ -12,7 +12,7 @@ Domain Path: /languages/
 License: GPL v3
 
 Convert Experiments by Yoast
-Copyright (C) 2008-2014, Joost de Valk - joost@yoast.com
+Copyright (C) 2008-2014, Team Yoast - info@yoast.com
 
 Copyright pre version 2.0.0: Copyright 2012  John Bekas Jr.  (email : john@convert.com)
 
