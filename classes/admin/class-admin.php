@@ -37,7 +37,7 @@ class YCE_Admin {
 	 * Show the admin warning
 	 */
 	public function show_warning() {
-		echo "<div class='updated'><p><strong>" . __( 'Convert Experiments is almost ready.', 'convert-experiments' ) . "</strong> " . sprintf( __( 'You must <a href="%1$s">enter your Convert Experiments Project Number</a> for it to work.', 'convert-experiments' ), "options-general.php?page=yoast-convert-experiments" ) . "</p></div>";
+		echo "<div class='updated'><p><strong>" . __( 'Convert Experiments is almost ready.', 'convert-experiments' ) . "</strong> " . sprintf( __( 'You must <a href="%1$s">enter your Convert Experiments Project Number</a> for it to work.', 'convert-experiments' ), "options-general.php?page=convert-experiments-by-yoast" ) . "</p></div>";
 	}
 
 	/**
@@ -50,7 +50,7 @@ class YCE_Admin {
 	 */
 	public function plugin_action_links( $links, $file ) {
 		if ( $file == plugin_basename( dirname( Yoast_Convert_Experiments::PLUGIN_FILE ) . '/convert-experiments.php' ) ) {
-			$settings_link = '<a href="options-general.php?page=yoast-convert-experiments">' . __( 'Settings', 'convert-experiments' ) . '</a>';
+			$settings_link = '<a href="options-general.php?page=convert-experiments-by-yoast">' . __( 'Settings', 'convert-experiments' ) . '</a>';
 			array_unshift( $links, $settings_link );
 		}
 

@@ -20,7 +20,11 @@ A/B testing on any set of categories or pages is then easy with the advanced fil
 configuration.
 
 > You'll need a [Convert Experiments account](http://www.convert.com/yoast/) to use this plugin.  Once you have that,  A/B tests are easy to
-> setup without any technical knowledge.
+> setup without any technical knowledge. If you set up an account through this link, you'll get a special Convert Yoast account, which has:
+>
+> 1. Free 5,000 tested visitors per month for 12 months
+> 2. Free A/B and Split URL testing
+> 3. Upgrade discounts to paid plans
 
 
 === What does the plugin do? ===
@@ -36,13 +40,13 @@ inserted javascript will look like the following:
 
 === Development ===
 
-Development of this plugin happens on GitHub. You can find the [plugins GitHub repository here](https://github.com/Yoast/convert-experiments/).
+Development of this plugin happens on GitHub. You can find the [plugins GitHub repository here](https://github.com/Yoast/convert-experiments/). Translations for this plugin are very welcome, you can translate the plugin by going to [translate.yoast.com](http://translate.yoast.com/projects/convert-experiments).
 
 == Installation ==
 [Sign up on the Yoast Convert page](http://www.convert.com/yoast/).
 
-1. Upload the convert directory to your blog's /wp-content/plugins/ directory;
-2. Activate the plugin through the 'Plugins' menu in WordPress;
+1. Go to Plugins -> Add New and upload the plugins zip file.
+2. Activate the plugin.
 3. Copy your project number from Convert Experiments™ into the plugin configuration screen.
 
 == Frequently Asked Questions ==
@@ -52,12 +56,12 @@ You'll [find the FAQ on Yoast.com.](https://yoast.com/wordpress/plugins/yoast-co
 
 1. Project Number
 1. Visitor Segmentation
-1. Multiple Conversion Goals for A/B testing
 
 == Changelog ==
 
 = 2.0 =
-* Rewritten plugin
+* Yoast rewrote plugin logic for better development standards.
+* Made the entire plugin i18n ready.
 
 = 1.3 =
 * Changing tracking code to a better and faster one that allows experiments to be triggered faster and tracked better.

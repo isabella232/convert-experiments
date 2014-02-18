@@ -18,7 +18,6 @@ class YCE_Convert_Script {
 	 * Output the Convert script in the header
 	 */
 	public function script() {
-		global $wp_query;
 
 		// Check if user entered a project number
 		if ( '' != Yoast_Convert_Experiments::get_project_number() ) {
@@ -27,40 +26,36 @@ class YCE_Convert_Script {
 			$extra_vars = '';
 
 			// Add extra vars based on page type
-			if ( $wp_query->is_category() ) {
-				$category_name = get_the_category_by_ID( $wp_query->query_vars['cat'] );
-				$category_name = str_replace( "'", "\'", $category_name );
+			if ( is_category() || is_tag() || is_tax() ) {
 
-				$extra_vars .= "var _conv_page_type='category';";
-				$extra_vars .= "var _conv_product_name='{$category_name}';";
-				$extra_vars .= "var _conv_category_id='{$wp_query->query_vars['cat']}';";
-				$extra_vars .= "var _conv_category_name='{$category_name}';";
-			} elseif ( $wp_query->is_tag() ) {
-				$tag = str_replace( "'", "\'", $wp_query->query_vars['tag'] );
-				$extra_vars .= "var _conv_page_type='tag';";
-				$extra_vars .= "var _conv_product_name='{$tag}';";
-				$extra_vars .= "var _conv_category_id='{$wp_query->query_vars['tag_id']}';";
-				$extra_vars .= "var _conv_category_name='{$tag}';";
-			} elseif ( $wp_query->is_home() ) {
+				$term = get_queried_object();
+
+				$extra_vars .= "var _conv_page_type='{$term->taxonomy}';";
+				$extra_vars .= "var _conv_product_name='{$term->slug}';";
+				$extra_vars .= "var _conv_category_id='{$term->term_id}';";
+				$extra_vars .= "var _conv_category_name='{$term->slug}';";
+
+			} elseif ( is_home() || is_front_page() ) {
 				$extra_vars .= "var _conv_page_type='home';";
 			} elseif ( is_single() || is_page() ) {
-				if ( is_single() ) {
-					$extra_vars .= "var _conv_page_type='post';";
-				} else {
-					$extra_vars .= "var _conv_page_type='page';";
+				if ( is_singular() ) {
+					global $post;
+					$extra_vars .= "var _conv_page_type='".$post->post_type."';";
 				}
-				$post_title = str_replace( "'", "\'", $wp_query->post->post_title );
+				$post_title = str_replace( "'", "\'", get_the_title() );
 				$extra_vars .= "var _conv_product_name='{$post_title}';";
-				$the_cats = get_the_category();
-				foreach ( $the_cats as $cat ) {
-					$ids[]   = $cat->cat_ID;
-					$names[] = str_replace( "'", "\'", $cat->cat_name );
-				}
-				if ( ! empty( $ids ) ) {
-					$extra_vars .= "var _conv_category_id='" . implode( ';', $ids ) . "';";
-				}
-				if ( ! empty( $names ) ) {
-					$extra_vars .= "var _conv_category_name='" . implode( ';', $names ) . "';";
+				if ( is_singular('post') ) {
+					$the_cats = get_the_category();
+					foreach ( $the_cats as $cat ) {
+						$ids[]   = $cat->cat_ID;
+						$names[] = str_replace( "'", "\'", $cat->cat_name );
+					}
+					if ( ! empty( $ids ) ) {
+						$extra_vars .= "var _conv_category_id='" . implode( ';', $ids ) . "';";
+					}
+					if ( ! empty( $names ) ) {
+						$extra_vars .= "var _conv_category_name='" . implode( ';', $names ) . "';";
+					}
 				}
 			}
 

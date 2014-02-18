@@ -16,9 +16,9 @@ class YCE_Admin_Page {
 	 * Setup the menu page
 	 */
 	public function setup() {
-		$submenu_page = add_submenu_page( 'options-general.php', __( 'Convert Experiments Configuration' ), __( 'Convert Experiments Configuration' ), 'manage_options', 'convert-experiments-by-yoast', array( $this, 'content' ) );
+		$sub_menu_page = add_submenu_page( 'options-general.php', __( 'Convert Experiments Configuration', 'convert-experiments' ), __( 'Convert Experiments Configuration', 'convert-experiments' ), 'manage_options', 'convert-experiments-by-yoast', array( $this, 'content' ) );
 
-		add_action( 'admin_print_styles-' . $submenu_page, array( $this, 'page_scripts' ) );
+		add_action( 'admin_print_styles-' . $sub_menu_page, array( $this, 'page_scripts' ) );
 
 		add_action( 'admin_init', array( $this, 'page_init' ) );
 	}
@@ -38,14 +38,14 @@ class YCE_Admin_Page {
 
 		add_settings_section(
 			'section_convert_experiments', // ID
-			'Convert Experiments', // Title
+			__( 'Convert Experiments', 'convert-experiments' ), // Title
 			array( $this, 'print_section_info' ), // Callback
 			'convert-experiments-by-yoast' // Page
 		);
 
 		add_settings_field(
 			'project_number', // ID
-			'Project Number', // Title
+			__( 'Project Number', 'convert-experiments' ), // Title
 			array( $this, 'project_number_callback' ), // Callback
 			'convert-experiments-by-yoast', // Page
 			'section_convert_experiments' // Section
@@ -71,7 +71,7 @@ class YCE_Admin_Page {
 	}
 
 	public function show_error() {
-		echo "<div class='error'><p><strong>" . __( 'Convert Experiments is almost ready.', 'convert-experiments' ) . "</strong> " . sprintf( __( 'Incorrect project number.', 'convert-experiments' ), "options-general.php?page=yoast-convert-experiments" ) . "</p></div>";
+		echo "<div class='error'><p><strong>" . __( 'Convert Experiments is almost ready.', 'convert-experiments' ) . "</strong> " . sprintf( __( 'Incorrect project number.', 'convert-experiments' ), "options-general.php?page=convert-experiments-by-yoast" ) . "</p></div>";
 	}
 
 	/**
@@ -107,20 +107,34 @@ class YCE_Admin_Page {
 					submit_button();
 					?>
 				</form>
+
+				<?php if ( !isset( $this->options['project_number'] ) || '' == $this->options['project_number'] ) { ?>
+
+				<h3><?php _e( 'Don\'t have a Convert account yet?', 'convert-experiments' ); ?></h3>
+
+				<p><?php printf( __( 'If you don\'t have a Convert account yet, %1$screate one here%2$s!', 'convert-experiments' ), '<a href="http://www.convert.com/yoast/">', '</a>' ); ?></p>
+
+				<p><?php _e( 'The free Yoast Convert account contains:', 'convert-experiments' ); ?></p>
+				<ol>
+					<li><?php _e( 'Free 5,000 tested visitors per month for 12 months', 'convert-experiments' ); ?></li>
+					<li><?php _e( 'Free A/B and Split URL testing', 'convert-experiments' ); ?></li>
+					<li><?php _e( 'Upgrade discounts to paid plans', 'convert-experiments' ); ?></li>
+				</ol>
+
+				<?php } ?>
+
+				<br/><br/>
+
+				<a href="https://yoast.com/hire-us/conversion-review/?utm_source=yoast-convert-config&utm_medium=banner&utm_campaign=conversion-review-banner">
+					<img src="<?php echo plugin_dir_url( Yoast_Convert_Experiments::PLUGIN_FILE ) ?>assets/images/conversion-review.png" alt="Get a Conversion Review from Team Yoast" />
+				</a>
+
 			</div>
 
 			<div class="convert-experiments-page-right">
 				<a name="product-number"></a>
-				Your Product Number is located on the Edit page for your project:<br /><br />
-				<img src="<?php echo plugins_dir_url( Yoast_Convert_Experiments::PLUGIN_FILE ) ?>assets/images/product-number.png"/>
-			</div>
-
-			<div class="clear"></div>
-
-			<div class="alignleft">
-				<a href="https://yoast.com/hire-us/conversion-review/?utm_source=yoast-convert-config&utm_medium=banner&utm_campaign=conversion-review-banner">
-					<img src="<?php echo plugins_dir_url( Yoast_Convert_Experiments::PLUGIN_FILE ) ?>assets/images/conversion-review.png" alt="Conversion Review" />
-				</a>
+				<?php _e( 'Your Product Number is located on the Edit page for your project:', 'convert-experiments' ); ?><br /><br />
+				<img src="<?php echo plugin_dir_url( Yoast_Convert_Experiments::PLUGIN_FILE ) ?>assets/images/product-number.png" />
 			</div>
 
 		</div>
