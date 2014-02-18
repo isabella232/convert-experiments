@@ -7,9 +7,10 @@ Stable tag: 2.0.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 
-Convert Experiments™ provides advanced A/B and Multivariate Testing functionality for your website or blog.
+Convert Experiments™ provides advanced A/B and MVT Testing functionality for your website or blog.
 
 == Description ==
+
 A/B testing for WordPress now possible and simple. This plugin is a combined effort by both Convert and Yoast.
 It will enable your WordPress installation for use with the Convert Experiments™ conversion optimization suite.
 On top of that, you'll be able to register for a free [special Yoast account on Convert.com](http://www.convert.com/yoast/),
@@ -26,10 +27,9 @@ configuration.
 > 2. Free A/B and Split URL testing
 > 3. Upgrade discounts to paid plans
 
+<h4>What does the plugin do?</h4>
 
-=== What does the plugin do? ===
-
-At a high level, this plugin's sole purpose is to quickly install a small block of javascript onto each page of your
+At a high level, this plugins sole purpose is to quickly install a small block of javascript onto each page of your
 WordPress installation. The installed javascript is necessary for the Convert Experiments suite to perform its
 A/B, split URL and multivariate functionality on your blog.
 
@@ -38,7 +38,7 @@ inserted javascript will look like the following:
 
 `<!-- begin Convert Experiments code--><script type="text/javascript">var _conv_host = (("https:" == document.location.protocol) ? "https://d9jmv9u00p0mv.cloudfront.net" : "http://cdn-1.convertexperiments.com");document.write(unescape("%3Cscript src='" + _conv_host + "/js/1-4.js' type='text/javascript'%3E%3C/script%3E"));</script><!-- end Convert Experiments code -->`
 
-=== Development ===
+<h4>Development</h4>
 
 Development of this plugin happens on GitHub. You can find the [plugins GitHub repository here](https://github.com/Yoast/convert-experiments/). Translations for this plugin are very welcome, you can translate the plugin by going to [translate.yoast.com](http://translate.yoast.com/projects/convert-experiments).
 
