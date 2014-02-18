@@ -108,23 +108,35 @@ class YCE_Admin_Page {
 					?>
 				</form>
 
-				<?php if ( !isset( $this->options['project_number'] ) || '' == $this->options['project_number'] ) { ?>
+				<?php if ( ! isset( $this->options['project_number'] ) || '' == $this->options['project_number'] ) { ?>
 
-				<h3><?php _e( 'Don\'t have a Convert account yet?', 'convert-experiments' ); ?></h3>
+					<h3><?php _e( 'Don\'t have a Convert account yet?', 'convert-experiments' ); ?></h3>
 
-				<p><?php printf( __( 'If you don\'t have a Convert account yet, %1$screate one here%2$s!', 'convert-experiments' ), '<a href="http://www.convert.com/yoast/">', '</a>' ); ?></p>
+					<p><?php printf( __( 'If you don\'t have a Convert account yet, %1$screate one here%2$s!', 'convert-experiments' ), '<a href="http://www.convert.com/yoast/">', '</a>' ); ?></p>
 
-				<p><?php _e( 'The free Yoast Convert account contains:', 'convert-experiments' ); ?></p>
-				<ol>
-					<li><?php _e( 'Free 5,000 tested visitors per month for 12 months', 'convert-experiments' ); ?></li>
-					<li><?php _e( 'Free A/B and Split URL testing', 'convert-experiments' ); ?></li>
-					<li><?php _e( 'Upgrade discounts to paid plans', 'convert-experiments' ); ?></li>
-				</ol>
+					<p><?php _e( 'The free Yoast Convert account contains:', 'convert-experiments' ); ?></p>
+					<ol>
+						<li><?php _e( 'Free 5,000 tested visitors per month for 12 months', 'convert-experiments' ); ?></li>
+						<li><?php _e( 'Free A/B and Split URL testing', 'convert-experiments' ); ?></li>
+						<li><?php _e( 'Upgrade discounts to paid plans', 'convert-experiments' ); ?></li>
+					</ol>
 
-				<?php } ?>
+				<?php
+				} else {
 
-				<br/><br/>
+					preg_match( '/\d+_(\d+)/', $this->options['project_number'], $match );
+					if ( is_array( $match ) ) {
+						$project_id = $match[1];
 
+						echo '<h3>' . __( 'Create your tests', 'convert-experiments' ) . '</h3>';
+						echo '<p>' . sprintf( __( 'You can %1$screate new tests here%2$s.', 'convert-experiments' ), '<a target="_blank" href="https://app.convertexperiments.com/#/projects/' . $project_id . '/">', '</a>' ) . '</p>';
+					}
+				}
+				?>
+
+				<br /><br />
+
+				<h3><?php _e( 'Yoast Advertisement', 'convert-experiments' ); ?></h3>
 				<a href="https://yoast.com/hire-us/conversion-review/?utm_source=yoast-convert-config&utm_medium=banner&utm_campaign=conversion-review-banner">
 					<img src="<?php echo plugin_dir_url( Yoast_Convert_Experiments::PLUGIN_FILE ) ?>assets/images/conversion-review.png" alt="Get a Conversion Review from Team Yoast" />
 				</a>
